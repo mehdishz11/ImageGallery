@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.rasa.gallery.activities.ZGridActivity;
+import com.rasa.gallery.entities.PictureModel;
 import com.rasa.gallery.entities.ZColor;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ZGrid {
     private Activity mActivity;
-    private ArrayList<String> imagesURLs;
+    private ArrayList<PictureModel> imagesURLs;
     private String title;
     private int spanCount = 2;
     private int toolbarColor = -1;
@@ -25,15 +26,15 @@ public class ZGrid {
 
     /**
      * @param activity   Refrence from current activity
-     * @param imagesURLs Image URLs to be displayed
+     * @param arrPictureModel Image URLs to be displayed
      */
-    public static ZGrid with(Activity activity, ArrayList<String> imagesURLs) {
-        return new ZGrid(activity, imagesURLs);
+    public static ZGrid with(Activity activity, ArrayList<PictureModel> arrPictureModel) {
+        return new ZGrid(activity, arrPictureModel);
     }
 
 
-    private ZGrid(Activity activity, ArrayList<String> imagesURLs) {
-        this.imagesURLs = imagesURLs;
+    private ZGrid(Activity activity, ArrayList<PictureModel> arrPictureModel) {
+        this.imagesURLs = arrPictureModel;
         this.mActivity = activity;
     }
 

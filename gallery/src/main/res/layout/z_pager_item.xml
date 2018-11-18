@@ -17,4 +17,19 @@
         android:clipChildren="false"
         android:clipToPadding="true"
         android:paddingBottom="80dp" />
+
+
+    <com.rasa.gallery.customView.RGalleryCustomTextViewBold
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#fff"
+        android:background="#66000000"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

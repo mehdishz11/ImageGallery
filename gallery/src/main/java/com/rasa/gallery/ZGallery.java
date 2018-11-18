@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.rasa.gallery.activities.ZGalleryActivity;
+import com.rasa.gallery.entities.PictureModel;
 import com.rasa.gallery.entities.ZColor;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ZGallery {
     private Activity mActivity;
-    private ArrayList<String> imagesURLs;
+    private ArrayList<PictureModel> imagesURLs;
     private String title;
     private int spanCount = 2;
     private int toolbarColor = -1;
@@ -24,17 +25,16 @@ public class ZGallery {
 
     private ZGallery() {
     }
-
     /**
      * @param activity   Refrence from current activity
-     * @param imagesURLs Image URLs to be displayed
+     * @param arrPictureModels Image URLs to be displayed
      */
-    public static ZGallery with(Activity activity, ArrayList<String> imagesURLs) {
-        return new ZGallery(activity, imagesURLs);
+    public static ZGallery with(Activity activity, ArrayList<PictureModel> arrPictureModels) {
+        return new ZGallery(activity, arrPictureModels);
     }
 
 
-    private ZGallery(Activity activity, ArrayList<String> imagesURLs) {
+    private ZGallery(Activity activity, ArrayList<PictureModel> imagesURLs) {
         this.imagesURLs = imagesURLs;
         this.mActivity = activity;
     }

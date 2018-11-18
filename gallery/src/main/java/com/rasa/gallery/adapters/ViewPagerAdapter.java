@@ -14,6 +14,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -21,6 +22,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.rasa.gallery.R;
+import com.rasa.gallery.entities.PictureModel;
 
 import java.util.ArrayList;
 
@@ -33,13 +35,13 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     Activity activity;
     LayoutInflater mLayoutInflater;
-    ArrayList<String> images;
+    ArrayList<PictureModel> images;
     PhotoViewAttacher mPhotoViewAttacher;
     private boolean isShowing = true;
     private Toolbar toolbar;
     private RecyclerView imagesHorizontalList;
 
-    public ViewPagerAdapter(Activity activity, ArrayList<String> images, Toolbar toolbar, RecyclerView imagesHorizontalList) {
+    public ViewPagerAdapter(Activity activity, ArrayList<PictureModel> images, Toolbar toolbar, RecyclerView imagesHorizontalList) {
         this.activity = activity;
         mLayoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.images = images;
@@ -61,8 +63,17 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mLayoutInflater.inflate(R.layout.z_pager_item, container, false);
 
-        final ImageView imageView = (ImageView) itemView.findViewById(R.id.iv);
-        Glide.with(activity).load(images.get(position)).listener(new RequestListener<Drawable>() {
+        final ImageView imageView =  itemView.findViewById(R.id.iv);
+        final TextView textTitle=itemView.findViewById(R.id.text_title);
+
+        if(images.get(position).getTextTitle()!=null && !images.get(position).getTextTitle().isEmpty()){
+            textTitle.setVisibility(View.VISIBLE);
+            textTitle.setText(images.get(position).getTextTitle());
+        }else{
+            textTitle.setVisibility(View.GONE);
+        }
+
+        Glide.with(activity).load(images.get(position).getImageUrl()).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;

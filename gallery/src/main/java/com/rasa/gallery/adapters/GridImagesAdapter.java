@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.rasa.gallery.ImageViewHolder;
 import com.rasa.gallery.R;
 import com.rasa.gallery.adapters.listeners.GridClickListener;
+import com.rasa.gallery.entities.PictureModel;
 
 import java.util.ArrayList;
 
@@ -18,13 +19,13 @@ import java.util.ArrayList;
  * Created by mohamedzakaria on 8/7/16.
  */
 public class GridImagesAdapter extends RecyclerView.Adapter<ImageViewHolder> {
-    private ArrayList<String> imageURLs;
+    private ArrayList<PictureModel> pictureModels;
     private Activity mActivity;
     private int imgPlaceHolderResId = -1;
     private GridClickListener clickListener;
 
-    public GridImagesAdapter(Activity activity, ArrayList<String> imageURLs, int imgPlaceHolderResId) {
-        this.imageURLs = imageURLs;
+    public GridImagesAdapter(Activity activity, ArrayList<PictureModel> imageURLs, int imgPlaceHolderResId) {
+        this.pictureModels = imageURLs;
         this.mActivity = activity;
         this.imgPlaceHolderResId = imgPlaceHolderResId;
         this.clickListener = (GridClickListener) activity;
@@ -38,7 +39,7 @@ public class GridImagesAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     @Override
     public void onBindViewHolder(ImageViewHolder holder, final int position) {
         RequestOptions requestOptions = new RequestOptions().placeholder(imgPlaceHolderResId != -1 ? imgPlaceHolderResId : R.drawable.placeholder);
-        Glide.with(mActivity).load(imageURLs.get(position))
+        Glide.with(mActivity).load(pictureModels.get(position).getImageUrl())
                 .apply(requestOptions)
                 .into(holder.image);
 
@@ -52,6 +53,6 @@ public class GridImagesAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
     @Override
     public int getItemCount() {
-        return imageURLs != null ? imageURLs.size() : 0;
+        return pictureModels != null ? pictureModels.size() : 0;
     }
 }

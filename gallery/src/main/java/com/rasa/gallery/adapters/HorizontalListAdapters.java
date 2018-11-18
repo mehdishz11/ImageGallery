@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.rasa.gallery.HorizontalImageViewHolder;
 import com.rasa.gallery.OnImgClick;
 import com.rasa.gallery.R;
+import com.rasa.gallery.entities.PictureModel;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,14 @@ import java.util.ArrayList;
  * Created by mohamedzakaria on 8/12/16.
  */
 public class HorizontalListAdapters extends RecyclerView.Adapter<HorizontalImageViewHolder> {
-    ArrayList<String> images;
+    ArrayList<PictureModel> pictureModel;
     Activity activity;
     int selectedItem = -1;
     OnImgClick imgClick;
 
-    public HorizontalListAdapters(Activity activity, ArrayList<String> images, OnImgClick imgClick) {
+    public HorizontalListAdapters(Activity activity, ArrayList<PictureModel> images, OnImgClick imgClick) {
         this.activity = activity;
-        this.images = images;
+        this.pictureModel = images;
         this.imgClick = imgClick;
     }
 
@@ -37,7 +38,7 @@ public class HorizontalListAdapters extends RecyclerView.Adapter<HorizontalImage
 
     @Override
     public void onBindViewHolder(HorizontalImageViewHolder holder, final int position) {
-        Glide.with(activity).load(images.get(position)).into(holder.image);
+        Glide.with(activity).load(pictureModel.get(position).getImageUrl()).into(holder.image);
         ColorMatrix matrix = new ColorMatrix();
         if (selectedItem != position) {
             matrix.setSaturation(0);
@@ -63,7 +64,7 @@ public class HorizontalListAdapters extends RecyclerView.Adapter<HorizontalImage
 
     @Override
     public int getItemCount() {
-        return images.size();
+        return pictureModel.size();
     }
 
     public void setSelectedItem(int position) {

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.rasa.gallery.Constants;
 import com.rasa.gallery.R;
+import com.rasa.gallery.entities.PictureModel;
 import com.rasa.gallery.entities.ZColor;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     protected Toolbar mToolbar;
-    protected ArrayList<String> imageURLs;
+    protected ArrayList<PictureModel> imageURLs;
     protected ZColor toolbarTitleColor;
     protected int toolbarColorResId;
     private String title;
@@ -31,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         // get values
-        imageURLs = getIntent().getStringArrayListExtra(Constants.IntentPassingParams.IMAGES);
+        imageURLs = (ArrayList<PictureModel>) getIntent().getSerializableExtra(Constants.IntentPassingParams.IMAGES);
         toolbarColorResId = getIntent().getIntExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, -1);
         title = getIntent().getStringExtra(Constants.IntentPassingParams.TITLE);
         toolbarTitleColor = (ZColor) getIntent().getSerializableExtra(Constants.IntentPassingParams.TOOLBAR_TITLE_COLOR);
