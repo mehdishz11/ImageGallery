@@ -14,7 +14,7 @@ allprojects {
 **Step 2: Add the dependency**
 ```xml
 dependencies {
-	       implementation 'com.github.mehdishz11:ImageGallery:v0.0.1'
+	       implementation 'com.github.mehdishz11:ImageGallery:v0.0.2'
 	}
 ```
 
